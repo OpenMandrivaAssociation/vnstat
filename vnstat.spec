@@ -6,7 +6,8 @@ License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
 Source:		http://humdi.net/vnstat/%{name}-%{version}.tar.gz
-Requires:	libgd-devel
+Requires:	libgd2
+BuildRequires:	libgd-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
