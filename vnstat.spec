@@ -1,11 +1,14 @@
 Summary:	vnStat is a console-based network traffic monitor
 Name:		vnstat
 Version:	1.7
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
-Source:		http://humdi.net/vnstat/%{name}-%{version}.tar.gz
+Source0:	http://humdi.net/vnstat/%{name}-%{version}.tar.gz
+Source1:	vnstat.init
+Source2:	vnstat_ip-up
+Source3:	vnstat_ip-down
 Requires:	libgd2
 BuildRequires:	libgd-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
@@ -19,6 +22,9 @@ of system resources.
 
 %prep
 %setup -q
+install -m 0755 %{SOURCE1} vnstat.init
+install -m 0755 %{SOURCE2} vnstat_ip-up
+install -m 0755 %{SOURCE3} vnstat_ip-down
 
 %build
 %make all
@@ -27,6 +33,14 @@ of system resources.
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/etc
 %makeinstall_std
+# vnstat service
+install -d %{buildroot}/%{_initrddir}
+install -m755 vnstat.init %{buildroot}/%{_initrddir}/vnstat
+# ifup/ifdown hooks
+install -d %{buildroot}/%{_sysconfdir}/sysconfig/network-scripts/ifup.d
+install -m755 vnstat_ip-up %{buildroot}/%{_sysconfdir}/sysconfig/network-scripts/ifup.d
+install -d %{buildroot}/%{_sysconfdir}/sysconfig/network-scripts/ifdown.d
+install -m755 vnstat_ip-down %{buildroot}/%{_sysconfdir}/sysconfig/network-scripts/ifdown.d
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
@@ -40,5 +54,7 @@ mkdir -p %{buildroot}/etc
 %{_bindir}/vnstati
 %{_sbindir}/vnstatd
 %{_sysconfdir}/vnstat.conf
+%{_initrddir}/vnstat
+%{_sysconfdir}/sysconfig/network-scripts/if*.d/vnstat*
 %{_mandir}/*/*
 /var/lib/vnstat
