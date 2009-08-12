@@ -1,7 +1,7 @@
 Summary:	vnStat is a console-based network traffic monitor
 Name:		vnstat
-Version:	1.7
-Release:	%mkrel 2
+Version:	1.8
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
@@ -27,7 +27,7 @@ install -m 0755 %{SOURCE2} vnstat_ip-up
 install -m 0755 %{SOURCE3} vnstat_ip-down
 
 %build
-%make all
+CFLAGS="%{optflags}" LDFLAGS="%{ldflags}" %make -e all
 
 %install
 rm -rf %{buildroot}
@@ -49,7 +49,6 @@ install -m755 vnstat_ip-down %{buildroot}/%{_sysconfdir}/sysconfig/network-scrip
 %defattr(-,root,root)
 %doc CHANGES COPYING README FAQ
 %doc examples/
-%doc cron/
 %{_bindir}/vnstat
 %{_bindir}/vnstati
 %{_sbindir}/vnstatd
