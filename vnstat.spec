@@ -1,6 +1,9 @@
+# disable fortify as it causes segmentation fault in vnstati
+%undefine _fortify_cflags
+
 Summary:	vnStat is a console-based network traffic monitor
 Name:		vnstat
-Version:	1.8
+Version:	1.9
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Monitoring
