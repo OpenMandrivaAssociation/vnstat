@@ -4,7 +4,7 @@
 Summary:	vnStat is a console-based network traffic monitor
 Name:		vnstat
 Version:	1.9
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
@@ -12,7 +12,6 @@ Source0:	http://humdi.net/vnstat/%{name}-%{version}.tar.gz
 Source1:	vnstat.init
 Source2:	vnstat_ip-up
 Source3:	vnstat_ip-down
-Requires:	libgd2
 BuildRequires:	libgd-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
