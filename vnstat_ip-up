@@ -1,0 +1,14 @@
+#!/bin/sh
+if [ -r /etc/sysconfig/network-scripts/ifcfg-$1 ]; then
+	. /etc/sysconfig/network-scripts/ifcfg-$1
+	if [ "a$ACCOUNTING" = "ayes" ]; then
+		if [ ! -w /var/lib/vnstat/$1 ]; then
+			# creating database
+			/usr/bin/vnstat -u -i $1 > /dev/null
+		fi
+		# enabling monitoring
+		/usr/bin/vnstat -r --enable -i $1
+		# update daemon
+		service vnstat force-reload
+	fi
+fi

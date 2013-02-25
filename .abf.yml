@@ -1,5 +1,2 @@
 sources:
-  "vnstat-1.11.tar.gz:"	92494f38a752dcf60053af2a6d8977737da7e616
-  "vnstat.init:"	01e41f96fdf840f4665cb2c2ec301f2c51ea679a
-  "vnstat_ip-down:"	503e31331a392b3e5fe5a8c246089af6f512ae04
-  "vnstat_ip-up:"	6023cb958b9315419f1f0c9b186afb25a839a7f6
+  vnstat-1.11.tar.gz: 92494f38a752dcf60053af2a6d8977737da7e616
