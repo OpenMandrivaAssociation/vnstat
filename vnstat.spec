@@ -12,6 +12,7 @@ Source0:	http://humdi.net/vnstat/%{name}-%{version}.tar.gz
 Source1:	vnstat.init
 Source2:	vnstat_ip-up
 Source3:	vnstat_ip-down
+Patch0:		vnstat-1.11-dont-strip-files-on-install.patch
 BuildRequires:	libgd-devel
 
 %description
@@ -24,6 +25,7 @@ of system resources.
 
 %prep
 %setup -q
+%patch0 -p1 -b .nostrip~
 install -m 0755 %{SOURCE1} vnstat.init
 install -m 0755 %{SOURCE2} vnstat_ip-up
 install -m 0755 %{SOURCE3} vnstat_ip-down
