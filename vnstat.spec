@@ -4,7 +4,7 @@
 Summary:	vnStat is a console-based network traffic monitor
 Name:		vnstat
 Version:	1.11
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
@@ -13,7 +13,7 @@ Source1:	vnstat.init
 Source2:	vnstat_ip-up
 Source3:	vnstat_ip-down
 Patch0:		vnstat-1.11-dont-strip-files-on-install.patch
-BuildRequires:	libgd-devel
+BuildRequires:	gd-devel
 
 %description
 vnStat is a console-based network traffic monitor for Linux and BSD that keeps
@@ -46,7 +46,6 @@ install -d %{buildroot}/%{_sysconfdir}/sysconfig/network-scripts/ifdown.d
 install -m755 vnstat_ip-down %{buildroot}/%{_sysconfdir}/sysconfig/network-scripts/ifdown.d
 
 %files
-%defattr(-,root,root)
 %doc CHANGES README FAQ
 %doc examples/
 %{_bindir}/vnstat
