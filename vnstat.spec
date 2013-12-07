@@ -4,7 +4,7 @@
 Summary:	Console-based network traffic monitor
 Name:		vnstat
 Version:	1.11
-Release:	5
+Release:	6
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
