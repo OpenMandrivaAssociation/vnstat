@@ -1,0 +1,25 @@
+--- a/src/vnstatd.c	2011-06-01 00:29:51.000000000 +0200
++++ b/src/vnstatd.c	2011-12-22 22:23:22.512967108 +0100
+@@ -482,10 +482,18 @@
+ 	/* lock / pid file */
+ 	pidfile = open(cfg.pidfile, O_RDWR|O_CREAT, 0644);
+ 	if (pidfile<0) {
+-		perror("pidfile");
+-		snprintf(errorstring, 512, "pidfile failed, exiting.");
+-		printe(PT_Error);
+-		exit(EXIT_FAILURE); /* can't open */
++		/* for Fedora's move to systemd and /run check
++		 * for /run/vnstat/vnstat.pid, so that it needs no changes
++		 * to the config file */
++		pidfile = open("/run/vnstat/vnstat.pid", O_RDWR|O_CREAT, 0644);
++		if (pidfile<0) {
++			perror("pidfile");
++			snprintf(errorstring, 512, "pidfile failed, exiting.");
++			printe(PT_Error);
++			exit(EXIT_FAILURE); /* can't open */
++		} else {
++			strncpy(cfg.pidfile, "/run/vnstat/vnstat.pid", 512);
++		}
+ 	}
+ 	if (lockf(pidfile,F_TLOCK,0)<0) {
+ 		perror("pidfile lock");
