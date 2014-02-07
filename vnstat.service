@@ -1,0 +1,10 @@
+[Unit]
+Description=VnStat - Lightweight Network Traffic Monitor
+After=network.target
+
+[Service]
+User=vnstat
+ExecStart=/usr/sbin/vnstatd -d
+
+[Install]
+WantedBy=multi-user.target
