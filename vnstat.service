@@ -5,6 +5,7 @@ After=network.target
 [Service]
 User=vnstat
 ExecStart=/usr/sbin/vnstatd -d
+PIDFile=/var/run/vnstat.pid
 
 [Install]
 WantedBy=multi-user.target
