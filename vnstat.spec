@@ -4,7 +4,7 @@
 Summary:	Console-based network traffic monitor
 Name:		vnstat
 Version:	1.11
-Release:	8
+Release:	9
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
@@ -15,6 +15,8 @@ Source3:	vnstat_ip-down
 Patch1:		vnstat-run-vnstat.diff
 Patch2:		vnstat-1.11-there-are-only-12-months.patch
 BuildRequires:	gd-devel
+Requires(pre):	shadow-utils
+Requires(post,postun): rpm-helper
 
 %description
 vnStat is a console-based network traffic monitor for Linux and BSD that keeps
@@ -104,6 +106,11 @@ END
 %{__cat} >> %{buildroot}/%{_sysconfdir}/tmpfiles.d/vnstat.conf << END
 D /run/vnstat 0700 vnstat vnstat
 END
+
+%pre
+getent group %{name} > /dev/null || %{_sbindir}/groupadd -r %{name}
+getent passwd %{name} > /dev/null || %{_sbindir}/useradd -r -g %{name} -M \
+  -d %{_localstatedir}/lib/%{name} -s /sbin/nologin -c "vnStat user" %{name}
 
 %post
 %tmpfiles_create %{name}
