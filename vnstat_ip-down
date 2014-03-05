@@ -9,6 +9,6 @@ if [ -r /etc/sysconfig/network-scripts/ifcfg-$1 ]; then
 		# enabling monitoring
 		/usr/bin/vnstat -r --disable -i $1
 		# update daemon
-		service vnstat force-reload
+		#service vnstat force-reload
 	fi
 fi
