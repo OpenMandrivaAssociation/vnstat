@@ -4,7 +4,7 @@
 Summary:	Console-based network traffic monitor
 Name:		vnstat
 Version:	1.11
-Release:	10
+Release:	11
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
@@ -135,4 +135,4 @@ getent passwd %{name} > /dev/null || %{_sbindir}/useradd -r -g %{name} -M \
 %{_sysconfdir}/tmpfiles.d/%{name}.conf
 
 %{_mandir}/*/*
-/var/lib/vnstat
+%attr(-,vnstat,vnstat) /var/lib/vnstat
