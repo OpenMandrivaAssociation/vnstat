@@ -4,7 +4,7 @@
 Summary:	Console-based network traffic monitor
 Name:		vnstat
 Version:	1.11
-Release:	13
+Release:	14
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
@@ -38,7 +38,7 @@ sed -i -e "s,/var/run/,/run/vnstat/,g; \
 # Use -p everywhere, -s nowhere
 sed -i -e "s,install \(-s \)\?,install -p ," Makefile
 
-install -m 0755 %{SOURCE1} vnstat.service
+install -m 0644 %{SOURCE1} vnstat.service
 install -m 0755 %{SOURCE2} vnstat_ip-up
 install -m 0755 %{SOURCE3} vnstat_ip-down
 
@@ -114,10 +114,10 @@ getent passwd %{name} > /dev/null || %{_sbindir}/useradd -r -g %{name} -M \
 
 %post
 %tmpfiles_create %{name}
-%_post_service %{name}
+%systemd_post %{name}
 
 %preun
-%_preun_service %{name}
+%systemd_preun %{name}
 
 %files
 %doc CHANGES README FAQ
