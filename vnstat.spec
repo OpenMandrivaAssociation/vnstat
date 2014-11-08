@@ -4,7 +4,7 @@
 Summary:	Console-based network traffic monitor
 Name:		vnstat
 Version:	1.11
-Release:	14
+Release:	15
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
@@ -56,7 +56,7 @@ mkdir -p %{buildroot}/etc
 %{__mkdir_p} %{buildroot}/run/
 
 %{__install} -d -m 0700 %{buildroot}/run/%{name}/
-%{__install} -p -m 755 %{SOURCE1} %{buildroot}%{_unitdir}/
+%{__install} -p -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/
 %{__rm} -rf examples/init.d
 
 # ifup/ifdown hooks
