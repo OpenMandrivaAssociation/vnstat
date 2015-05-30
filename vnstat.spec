@@ -4,7 +4,7 @@
 Summary:	Console-based network traffic monitor
 Name:		vnstat
 Version:	1.11
-Release:	16
+Release:	17
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
@@ -15,7 +15,7 @@ Source3:	vnstat_ip-down
 Patch1:		vnstat-run-vnstat.diff
 Patch2:		vnstat-1.11-there-are-only-12-months.patch
 BuildRequires:	gd-devel
-Requires(pre):	shadow-utils
+Requires(pre):	rpm-helper
 Requires(post,postun): rpm-helper
 
 %description
@@ -108,9 +108,7 @@ D /run/vnstat 0700 vnstat vnstat
 END
 
 %pre
-getent group %{name} > /dev/null || %{_sbindir}/groupadd -r %{name}
-getent passwd %{name} > /dev/null || %{_sbindir}/useradd -r -g %{name} -M \
-  -d %{_localstatedir}/lib/%{name} -s /sbin/nologin -c "vnStat user" %{name}
+%_pre_useradd %{name} %{_localstatedir}/lib/%{name} /sbin/nologin
 
 %post
 %tmpfiles_create %{name}
