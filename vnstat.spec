@@ -121,10 +121,8 @@ END
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %config(noreplace) %{_sysconfdir}/cron.d/%{name}
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
-
 %{_unitdir}/vnstat.service
 %{_sysconfdir}/sysconfig/network-scripts/if*.d/vnstat*
 %{_sysconfdir}/tmpfiles.d/%{name}.conf
-
 %{_mandir}/*/*
 %attr(-,vnstat,vnstat) /var/lib/vnstat
