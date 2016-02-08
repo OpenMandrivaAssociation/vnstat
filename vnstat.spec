@@ -4,7 +4,7 @@
 Summary:	Console-based network traffic monitor
 Name:		vnstat
 Version:	1.11
-Release:	18
+Release:	19
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://humdi.net/vnstat/
@@ -48,6 +48,7 @@ CFLAGS="%{optflags}" LDFLAGS="%{ldflags}" %make -e all
 %install
 mkdir -p %{buildroot}/etc
 %makeinstall_std
+
 # vnstat service
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/cron.d
 %{__mkdir_p} %{buildroot}%{_unitdir}
@@ -65,8 +66,8 @@ install -m755 vnstat_ip-up %{buildroot}/%{_sysconfdir}/sysconfig/network-scripts
 install -d %{buildroot}/%{_sysconfdir}/sysconfig/network-scripts/ifdown.d
 install -m755 vnstat_ip-down %{buildroot}/%{_sysconfdir}/sysconfig/network-scripts/ifdown.d
 
-%{__chmod} 644 examples/vnstat.cgi
-%{__chmod} 644 examples/vnstat.cron
+chmod 644 examples/vnstat.cgi
+chmod 644 examples/vnstat.cron
 
 %{__cat} >> %{buildroot}%{_sysconfdir}/cron.d/%{name} << END
 MAILTO=root
@@ -109,13 +110,6 @@ END
 
 %pre
 %_pre_useradd %{name} %{_localstatedir}/lib/%{name} /sbin/nologin
-
-%post
-%tmpfiles_create %{name}
-%systemd_post %{name}
-
-%preun
-%systemd_preun %{name}
 
 %files
 %doc CHANGES README FAQ
