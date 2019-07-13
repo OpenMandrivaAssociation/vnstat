@@ -13,6 +13,7 @@ Source1:	vnstat.service
 Source2:	vnstat_ip-up
 Source3:	vnstat_ip-down
 BuildRequires:	gd-devel
+BuildRequires:	pkgconfig(sqlite3)
 Requires(pre):	rpm-helper
 Requires(post,postun): rpm-helper
 
