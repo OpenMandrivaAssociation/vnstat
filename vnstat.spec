@@ -26,7 +26,7 @@ of system resources.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 # disable maximum bandwidth setting and change pidfile location
 sed -i -e "s,/var/run/,/run/vnstat/,g; \
