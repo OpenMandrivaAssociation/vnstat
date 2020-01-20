@@ -3,7 +3,7 @@
 
 Summary:	Console-based network traffic monitor
 Name:		vnstat
-Version:	2.5
+Version:	2.6
 Release:	1
 License:	GPLv2+
 Group:		Monitoring
