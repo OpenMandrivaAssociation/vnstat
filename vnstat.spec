@@ -7,7 +7,7 @@ Version:	2.12
 Release:	1
 License:	GPLv2+
 Group:		Monitoring
-Url:		http://humdi.net/vnstat/
+Url:		https://humdi.net/vnstat/
 Source0:	http://humdi.net/vnstat/%{name}-%{version}.tar.gz
 Source1:	vnstat.service
 Source2:	vnstat_ip-up
